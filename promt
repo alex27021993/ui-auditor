@@ -1,3 +1,12 @@
+git clone https://github.com/alex27021993/ui-auditor.git ~/ui-auditor
+cd ~/ui-auditor && ./install.sh
+claude mcp add playwright -s user -- npx @playwright/mcp@latest
+
+
+
+
+
+
 Проведи функциональный QA-аудит интернет-магазина: {{ВСТАВЬ_URL}}
 
 Используй наш UI Auditor — скил `ecommerce-functional-audit` (Трек A: «работает ли и логично ли»). Браузер гоняй через Playwright MCP, состояние читай из DOM (`browser_evaluate`), без скриншотов. Действуй как реальный пользователь; консоль/сеть/DOM — только для диагностики. Каждый сайт проверяй независимо и максимально полно.
