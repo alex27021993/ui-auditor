@@ -13,22 +13,44 @@
 
 ## Установка (для коллег)
 
-Склонировать в папку скилов Claude Code:
+Клонировать репозиторий **в любую папку** и запустить `install.sh` — он слинкует
+оба скила в `~/.claude/skills/` (напрямую клонировать в `~/.claude/skills/` нельзя:
+скилы лежат на уровень глубже, в `skills/<name>/`, и не подхватятся):
 
 ```bash
-git clone https://github.com/<owner>/ui-auditor.git ~/.claude/skills/ui-auditor
+git clone https://github.com/<owner>/ui-auditor.git ~/ui-auditor
+cd ~/ui-auditor && ./install.sh
 ```
 
-Claude Code сам подхватит скилы из этой папки.
+Скрипт создаёт симлинки `~/.claude/skills/ecommerce-functional-audit` и
+`…/ecommerce-visual-audit`, ведущие в клон. Claude Code подхватит их как обычные скилы.
 
 ## Обновление до последней версии
 
 ```bash
-cd ~/.claude/skills/ui-auditor && git pull
+cd ~/ui-auditor && git pull
 ```
 
-Рекомендуется делать `git pull` **перед каждым прогоном** — так всегда свежая методика.
-Чтобы получать уведомления о новых версиях — нажмите **Watch → All Activity** на репозитории.
+Симлинки ведут в клон — после `git pull` скилы обновляются сами, повторно `install.sh`
+запускать не нужно (только если добавился НОВЫЙ скил). Делай `git pull` **перед каждым
+прогоном**. Для уведомлений о версиях — **Watch → All Activity** на репозитории.
+
+## Браузер (обязательно)
+
+Скилы работают через браузер — без браузерного MCP запускать аудит не на чём.
+Добавь Playwright MCP **в user-scope** (работает в любом проекте, не только в этой папке):
+
+```bash
+claude mcp add playwright -s user -- npx @playwright/mcp@latest
+```
+
+Первый запуск скачает браузеры Playwright. В самой папке репозитория браузер также
+поднимется автоматически из бандлированного [.mcp.json](.mcp.json).
+
+> Имена инструментов в `SKILL.md` (`javascript_tool`, `get_page_text`, `read_page`,
+> `screenshot`) — обобщённые. Playwright MCP даёт свои (`browser_navigate`,
+> `browser_evaluate`, `browser_snapshot`, `browser_take_screenshot`); Claude сопоставит
+> по смыслу. Если используешь другой браузерный MCP — пропиши его вместо Playwright.
 
 ## Использование
 
