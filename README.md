@@ -54,13 +54,21 @@ claude mcp add playwright -s user -- npx @playwright/mcp@latest
 
 ## Использование
 
-В чате Claude Code:
+Самый быстрый способ — **слэш-команда** (ставится `install.sh` вместе со скилами).
+В чате Claude Code просто укажи домен:
 
 ```
-Проведи функциональный аудит интернет-магазина: https://example.com
+/audit https://example.com
 ```
 
-или явно сослаться на скил `ecommerce-functional-audit` / `ecommerce-visual-audit`.
+- `/audit <url>` — полный функциональный аудит (Трек A).
+- `/audit-visual <url>` — визуальный/информационный аудит (Трек B).
+
+Команда ссылается на скил, поэтому всегда применяет **актуальную** методику из
+`SKILL.md` (после `git pull` — свежие проверки, текст команды менять не нужно).
+
+Альтернатива без команды — обычный текст: «Проведи функциональный аудит магазина
+https://example.com скилом `ecommerce-functional-audit`».
 
 ## Правки
 

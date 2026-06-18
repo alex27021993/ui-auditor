@@ -3,6 +3,7 @@ cd ~/ui-auditor && ./install.sh
 claude mcp add playwright -s user -- npx @playwright/mcp@latest
 
 
+Если запущен проект, обновление: cd ~/ui-auditor && git pull
 
 
 
