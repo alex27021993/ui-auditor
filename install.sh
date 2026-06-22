@@ -8,6 +8,12 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE="${CLAUDE_HOME:-$HOME/.claude}"
+VERSION="$(cat "$REPO/VERSION" 2>/dev/null || echo '?')"
+
+echo "════════════════════════════════════════"
+echo "  UI Auditor  v$VERSION"
+echo "  установка / обновление скилов и команд"
+echo "════════════════════════════════════════"
 
 # --- Скилы ---
 mkdir -p "$CLAUDE/skills"
@@ -28,6 +34,7 @@ for f in "$REPO"/commands/*.md; do
 done
 
 echo
-echo "Готово. Обновляться: git -C \"$REPO\" pull   (симлинки подхватят новое сами)"
+echo "Готово — UI Auditor v$VERSION установлен."
+echo "Обновляться:  git -C \"$REPO\" pull   (симлинки подхватят новое сами; история — в CHANGELOG.md)"
 echo "Запуск аудита в чате:  /audit https://example.com   (или /audit-visual …)"
 echo "Дальше настрой браузер — см. раздел «Браузер» в README.md"
